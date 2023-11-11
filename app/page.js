@@ -35,7 +35,7 @@ export default function Home() {
     </div>
     <hr className="my-2"/>
     <div className="h-16">
-      <h2 className="bg-black text-white uppercase text-3xl text-center font-bold">Categorias</h2>
+      <h2 className="bg-black text-white uppercase text-3xl text-center font-bold p-2 my-5">Categorias</h2>
     </div>
     <CategoriesMainPage/>
     </main>

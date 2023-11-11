@@ -12,12 +12,12 @@ const links = [
         href: "/productos/todos"
     },
     {
-        label: "Nosotros",
-        href: "/nosotros"
-    },
-    {
         label: "Contacto",
         href: "/contacto"
+    },
+    {
+        label: "Carrito",
+        href: "/carrito"
     },
 ]
 
@@ -44,6 +44,7 @@ const Header = () => {
                                 className={`text-base p-3 text-gray-800`}
                             >
                                 {link.label}
+
                             </Link>
                         })                        
                     }
