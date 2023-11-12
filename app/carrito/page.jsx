@@ -7,6 +7,7 @@ function CartTable() {
    
 	return (
 		<div className="rounded-t-xl overflow-hidden p-10">
+			<h1 className="text-3xl font-bold text-center uppercase mb-4">Tu carrito</h1>
 			<table className='table-auto w-full text-center border border-collapse'>
 				<thead className="bg-gray-700">
 					<tr>
