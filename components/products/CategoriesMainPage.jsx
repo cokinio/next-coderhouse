@@ -36,8 +36,8 @@ const links = [
 const CategoriesMainPage = () => {
 	return (
 		<div className="flex flex-wrap justify-center justify-items-center	">
-			{links.map((link) => (
-				<Link href={link.href} className="basis-auto">
+			{links.map((link,index) => (
+				<Link key={index} href={link.href} className="basis-auto">
                     <div>
 					<Image
 						src={link.img}
