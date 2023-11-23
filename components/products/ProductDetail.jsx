@@ -5,10 +5,14 @@ import GoBack from "../ui/GoBack"
 
 
 
-const ProductDetail = ({ slug }) => {
+const ProductDetail = async ({ slug }) => {
 
     let fixedSlug=decodeURI(slug)
-    const item = mockData.find(p => p.Title1 === fixedSlug)
+    const itemFound = await fetch(`http://localhost:3000/api/product/${fixedSlug}`, {
+        cache: 'no-store'
+    }).then(res => res.json())
+
+    let item=itemFound[0];
     console.log(item)
     return (
         <div className="max-w-4xl m-auto">
