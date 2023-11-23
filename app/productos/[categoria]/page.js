@@ -1,5 +1,6 @@
 import CategoriesMenu from "@/components/products/CategoriesMenu"
 import ProductsList from "@/components/products/ProductsList"
+import { Skeleton } from "@/components/ui/skeleton"
 
 export async function generateMetadata({params, searchParams}, parent) {
 
@@ -17,7 +18,10 @@ const Productos = ({params}) => {
 
             <div className="flex gap-10">
                 <CategoriesMenu />
-                <ProductsList categoria={categoria}/>
+
+                <Suspense fallback={<Skeleton className="w-[100px] h-[20px] rounded-full" />}>
+                    <ProductsList categoria={categoria}/>
+                </Suspense>
             </div>
         </main>
     )
