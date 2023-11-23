@@ -24,13 +24,24 @@ export const CartProvider = ({children}) => {
         setCart([])
     }
 
+    function subtotal(price,cant){
+        let total=0;
+        let stringPrecio=price;
+        stringPrecio=stringPrecio.replace('.','')
+        stringPrecio=stringPrecio.replace(/,/, '.')
+        let precio=stringPrecio.slice(1,stringPrecio.length)
+        total=precio*cant;
+        return total.toFixed(2);
+      }
+
     return (
         <CartContext.Provider value={{
             cart,
             addToCart,
             isInCart,
             totalQty,
-            emptyCart
+            emptyCart,
+            subtotal
         }}>
             {children}
         </CartContext.Provider>

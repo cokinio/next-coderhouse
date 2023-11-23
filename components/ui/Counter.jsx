@@ -2,11 +2,11 @@
 import { useState } from "react"
 import Boton from "./Boton"
 
-const Counter = () => {
-    const [counter, setCounter] = useState(0)
+const Counter = ({counter, setCounter, max}) => {
+   
 
-    const increase = () => setCounter(counter + 1)
-    const decrease = () => setCounter(counter - 1)
+    const increase = () => counter < max && setCounter(counter + 1)
+    const decrease = () => counter > 1 && setCounter(counter - 1)
 
     return (
         <div className="flex justify-center items-center gap-3">

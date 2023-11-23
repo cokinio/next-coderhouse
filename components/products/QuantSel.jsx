@@ -7,12 +7,17 @@ import Link from "next/link"
 
 const QuantSel = ({ item }) => {
     const [quantity, setQuantity] = useState(1)
-    const { addToCart, isInCart } = useCartContext()
+    const { addToCart, isInCart, subtotal } = useCartContext()
     
     const handleAdd = () => {
+        console.log(item.Price1)
+        console.log(quantity)
+        let subtotal1=subtotal(item.Price1,quantity);
+        console.log(subtotal1)
         addToCart({
             ...item,
-            quantity
+            quantity,
+            subtotal1
         })
     }
 

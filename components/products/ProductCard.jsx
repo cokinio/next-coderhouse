@@ -18,7 +18,7 @@ const ProductCard = ({ item }) => {
 
                 <div className="px-4 border-t border-gray-200">
                     <h4 className="text-sm my-4">{item.Title1}</h4>
-                    <p className="text-2xl font-semibold mb-6">$ {item.Price1}</p>
+                    <p className="text-2xl font-semibold mb-6"> {item.Price1}</p>
                 </div>
             </Link>
         </article>
