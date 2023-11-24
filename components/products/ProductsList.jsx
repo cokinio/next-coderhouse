@@ -1,13 +1,13 @@
-import { mockData }  from "@/data/diet"
 import ProductCard from "./ProductCard"
 
 const ProductsList = async ({ categoria }) => {
 
     const items = await fetch(`http://localhost:3000/api/productos/${categoria}`, {
-        cache: 'force-cache',
+        // cache: 'force-cache',
+        //cache: 'no-store',
+        next: { revalidate: 3600 } 
     }).then(r => r.json())
 
-    console.log(categoria)
     return (
         <section className="container m-auto flex justify-center items-center gap-12 flex-wrap">
             {

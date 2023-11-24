@@ -1,5 +1,5 @@
 "use client"
-import { useState } from "react"
+import { useState,useEffect } from "react"
 import Counter from "../ui/Counter"
 import Boton from "../ui/Boton"
 import { useCartContext } from "../../context/CartContext"
@@ -7,34 +7,38 @@ import Link from "next/link"
 
 const QuantSel = ({ item }) => {
     const [quantity, setQuantity] = useState(1)
-    const { addToCart, isInCart, subtotal } = useCartContext()
-    
+    const [flag, setFlag] = useState(0)
+    const { addToCart, isInCart, subtotal,cart } = useCartContext()
+    useEffect(()=>{reestablecerCantidad()
+      },[]);
+
     const handleAdd = () => {
-        console.log(item.Price1)
-        console.log(quantity)
-        let subtotal1=subtotal(item.Price1,quantity);
-        console.log(subtotal1)
-        addToCart({
-            ...item,
-            quantity,
-            subtotal1
-        })
+        let subtotal1=subtotal(item.price,quantity)
+        let item1= {...item,subtotal1}
+        addToCart(item1,quantity)
+    }
+
+    const reestablecerCantidad= ()=>{
+    let encontrado=isInCart(item._id);
+    console.log(encontrado)
+    if (encontrado!=-1){
+        setQuantity(cart[encontrado].quantity)
+        setFlag(1);
+    }
     }
 
     return (
         <div className="flex flex-col gap-5 mt-6">
-        {
-            isInCart(item.slug)
-                ?   <Link
-                        href={"/cart"}
-                        className="rounded-lg py-2 px-4 bg-blue-600 text-white text-center">
-                        Terminar mi compra
-                    </Link>
-                :   <>
-                        <Counter max={item.inStock} counter={quantity} setCounter={setQuantity} />
-                        <Boton className="w-full hover:bg-blue-600" onClick={handleAdd}>Agregar al carrito</Boton>
-                    </>
-        }
+            <Counter max={item.stock} counter={quantity} setCounter={setQuantity} />
+            {(flag!=0)
+            ?
+            <Link
+                href={"/carrito"}>
+                    <Boton className="w-full bg-green-200" onClick={handleAdd}>Actualizar al carrito</Boton>
+                </Link>
+            :
+            <Boton className="w-full" onClick={handleAdd}>Agregar al carrito</Boton>
+            }
         </div>
     )
 }

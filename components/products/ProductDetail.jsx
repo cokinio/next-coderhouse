@@ -13,29 +13,29 @@ const ProductDetail = async ({ slug }) => {
     }).then(res => res.json())
 
     let item=itemFound[0];
-    console.log(item)
     return (
         <div className="max-w-4xl m-auto">
             <GoBack className="text-sm text-blue-500 underline mb-6"/>
             <section className="flex gap-6">
                 <div className="relative basis-1/2">
                     <Image
-                        src={item.Image1}
-                        alt={item.Title1}
+                        src={item.image}
+                        alt={item.title}
                         width={860}
                         height={860}
                     />
                 </div>
-                <div className="basis-1/2">
-                    <h2 className="text-2xl font-semibold border-b border-gray-200 pb-4 mb-4">{item.Title1}</h2>
-                    <p className="text-4xl"> {item.Price1}</p>
+                <div className="basis-1/2 h-full">
+                    <h2 className="text-2xl font-semibold border-b border-gray-200 pb-4 mb-4">{item.title}</h2>
+                    <p className="text-4xl"> {item.price}</p>
+                    <p className="text-2xl"> stock: {item.stock}</p>
 
-                    <QuantSel item={item}/>
+                    <QuantSel className="my-auto" item={item}/>
                 </div>
             </section>
             <section className="mt-12">
                 <h3 className="text-xl font-semibold border-b border-gray-200 pb-4 my-4">Descripcion</h3>
-                <p className="text-gray-600">{item.Field3}</p>
+                <p className="text-gray-600">{item.category}</p>
             </section>
         </div>
     )

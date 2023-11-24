@@ -1,13 +1,8 @@
 import Boton from "../ui/Boton";
 import Image from "next/image";
 import {
-	Table,
-	TableBody,
-	TableCaption,
 	TableCell,
-	TableHead,
-	TableHeader,
-	TableRow,
+	TableRow
 } from "@/components/ui/table";
 
 const CartItem = ({ item }) => {
@@ -15,15 +10,15 @@ const CartItem = ({ item }) => {
 		<TableRow>
 			<TableCell className="text-center">
 				<Image className="mx-auto"
-					src={item.Image1}
-					alt={item.Title1}
+					src={item.image}
+					alt={item.title}
 					width={80}
 					height={80}
 				/>
 			</TableCell>
 			<TableCell className="text-center">
 				<h3>{item.Title1}</h3>
-				<p className="text-sm font-semibold">{item.Price1}</p>
+				<p className="text-sm font-semibold">{item.price}</p>
 				<p className="text-sm">Cantidad: {item.quantity}</p>
 			</TableCell>
 			<TableCell className="text-center">{item.subtotal1}</TableCell>

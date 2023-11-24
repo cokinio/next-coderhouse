@@ -1,10 +1,12 @@
+"use client";
 import React from "react";
-import {mockCart} from "@/data/cart";
 import Link from "next/link";
 import Image from "next/image";
+import { useCartContext } from "@/context/CartContext";
 
 function CartTable() {
-   
+	const { cart,removeItem, itemsInCart, totalCart } = useCartContext();
+
 	return (
 		<div className="rounded-t-xl overflow-hidden p-10">
 			<h1 className="text-3xl font-bold text-center uppercase mb-4">Tu carrito</h1>
@@ -21,30 +23,30 @@ function CartTable() {
 					</tr>
 				</thead>
 				<tbody className="table-auto">
-					{mockCart.map((item, index) => {
+					{cart.map((item, index) => {
 						return (
 							<React.Fragment key={index}>
 								<tr>
 									<th className="px-4 py-2 font-medium border">{index}</th>
 									<td className="px-4 py-2 font-medium border">
-										<Link href={`/productos/detail/${item.Title1}`}>
-											{item.Title1}
+										<Link href={`/productos/detail/${item.title}`}>
+											{item.title}
 										</Link>
 									</td>
 									<td className="px-4 py-2 font-medium border">
 										<Image
-											alt={item.Title1}
-											src={item.Image1}
+											alt={item.title}
+											src={item.image}
 											width={50}
 											height={50}
 											style={{ objectFit: "contain" }}
 										/>
 									</td>
-									<td className="px-4 py-2 font-medium border">{item.cant}</td>
-									<td className="px-4 py-2 font-medium border">{item.Price1}</td>
-									<td className="px-4 py-2 font-medium border"></td>
+									<td className="px-4 py-2 font-medium border">{item.quantity}</td>
+									<td className="px-4 py-2 font-medium border">{item.price}</td>
+									<td className="px-4 py-2 font-medium border">{item.subtotal1}</td>
 									<td className="px-4 py-2 font-medium border">
-										<button className="text-bold bg-red-600 text-white p-2 rounded">X</button>
+										<button onClick={() => removeItem(item._id)} className="text-bold bg-red-600 text-white p-2 rounded">X</button>
 									</td>
 								</tr>
 							</React.Fragment>
@@ -54,9 +56,9 @@ function CartTable() {
 						<th></th>
 						<td className="px-4 py-2 font-medium border"></td>
 						<td className="px-4 py-2 font-medium border"></td>
-						<td className="px-4 py-2 font-medium border">Cantidad productos:</td>
+						<td className="px-4 py-2 font-medium border">Cantidad productos: {itemsInCart()}</td>
 						<td className="px-4 py-2 font-medium border"></td>
-						<td className="px-4 py-2 font-medium border">Total: $</td>
+						<td className="px-4 py-2 font-medium border">Total: ${totalCart()}</td>
 						<td className="px-4 py-2 font-medium border"></td>
 					</tr>
 				</tbody>

@@ -5,20 +5,21 @@ const ProductCard = ({ item }) => {
 
     return (
         <article className="basis-72 shadow-lg rounded">
-            <Link href={`/productos/detail/${item.Title1}`}
+            <Link href={`/productos/detail/${item.title}`}
                 className="flex flex-col"
             >
                 <Image
-                    alt={item.Title1}
-                    src={item.Image1}
+                    alt={item.title}
+                    src={item.image}
                     width={288}
                     height={288}
                     style={{objectFit: "contain"}}
                 />
 
                 <div className="px-4 border-t border-gray-200">
-                    <h4 className="text-sm my-4">{item.Title1}</h4>
-                    <p className="text-2xl font-semibold mb-6"> {item.Price1}</p>
+                    <h4 className="text-sm my-4">{item.title}</h4>
+                    <p className="text-2xl font-semibold mb-6"> {item.price}</p>
+                    <p className="text-xl mb-6"> Stock {item.stock}</p>
                 </div>
             </Link>
         </article>

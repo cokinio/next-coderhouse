@@ -1,5 +1,4 @@
 "use client"
-import { useState } from "react"
 import Boton from "./Boton"
 
 const Counter = ({counter, setCounter, max}) => {

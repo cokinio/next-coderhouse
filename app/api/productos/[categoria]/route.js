@@ -9,7 +9,7 @@ export async function GET(_, { params }) {
     if (categoria === 'todos') {
         products = await productsModel.find()
     }else{
-        products = await productsModel.find({Field3:categoria})
+        products = await productsModel.find({category:categoria})
     }
 
     return NextResponse.json(products)

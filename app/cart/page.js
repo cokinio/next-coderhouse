@@ -14,7 +14,7 @@ import {
 
 const CartPage = () => {
 	const { cart } = useCartContext();
-
+	consoloe.log(cart)
 	return (
 		<main className="container m-auto">
 			<h2 className="text-2xl my-10 pb-4 text-center">Tu compra</h2>
