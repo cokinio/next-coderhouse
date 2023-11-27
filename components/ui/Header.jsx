@@ -1,6 +1,8 @@
+"use client";
 import Image from 'next/image'
 import Link from 'next/link'
 import SearchBox from './SearchBox'
+import { useCartContext } from "@/context/CartContext";
 
 const links = [
     {
@@ -14,14 +16,12 @@ const links = [
     {
         label: "Contacto",
         href: "/contacto"
-    },
-    {
-        label: "Carrito",
-        href: "/carrito"
-    },
+    }
 ]
 
 const Header = () => {
+
+    const { itemsInCart } = useCartContext();
 
     return (
         <header className="w-full bg-slate-50">
@@ -48,6 +48,24 @@ const Header = () => {
                             </Link>
                         })                        
                     }
+                    <div className='d-flex'>
+                        <Link
+                            href="/carrito"
+                        >
+                            <Image
+                            alt="cart"
+                            src="./cart.svg"
+                            width={50}
+                            height={50}
+                            style={{objectFit: "contain"}}
+                            />
+                        </Link>
+                        {itemsInCart()==0 ?
+                        <p></p>
+                        :
+                        <p className='text-right text-xs text-red-600'>{itemsInCart()}</p>
+                        }
+                    </div>
                 </nav>
             </div>
         </header>

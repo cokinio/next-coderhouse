@@ -1,9 +1,13 @@
 import React from "react";
-import {mockData} from "@/data/diet";
 import Link from "next/link";
 import Image from "next/image";
 
-const page = () => {
+const page = async () => {
+
+	const items = await fetch(`http://localhost:3000/api/productos/todos`, {
+        cache: 'no-store'
+    }).then(res => res.json())
+
   return (
     <div className="rounded-t-xl overflow-hidden p-10">
             <h1 className="font-7xl font-bold uppercase text-center my-2"> Panel de administración</h1>
@@ -23,24 +27,24 @@ const page = () => {
 					</tr>
 				</thead>
 				<tbody className="table-auto">
-					{mockData.map((item, index) => {
+					{items.map((item, index) => {
 						return (
 							<React.Fragment key={index}>
 								<tr>
 									<th className="px-4 py-2 font-medium border">{index}</th>
 									<td className="px-4 py-2 font-medium border">
-										<Link href={`/productos/detail/${item.Title1}`}>
-											{item.Title1}
+										<Link href={`/productos/detail/${item.title}`}>
+											{item.title}
 										</Link>
 									</td>
-                                    <td className="px-4 py-2 font-medium border">{item.Field3}</td>
-									<td className="px-4 py-2 font-medium border">50</td>
-									<td className="px-4 py-2 font-medium border">{item.Price1}</td>
+                                    <td className="px-4 py-2 font-medium border">{item.category}</td>
+									<td className="px-4 py-2 font-medium border">{item.stock}</td>
+									<td className="px-4 py-2 font-medium border">{item.price}</td>
                                     <td className="px-4 py-2 font-medium border">
                                         <div className="flex items-center justify-center">
                                             <Image
-                                                alt={item.Title1}
-                                                src={item.Image1}
+                                                alt={item.title}
+                                                src={item.image}
                                                 width={50}
                                                 height={50}
                                                 style={{ objectFit: "contain" }}

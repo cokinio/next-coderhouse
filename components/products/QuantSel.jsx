@@ -32,10 +32,7 @@ const QuantSel = ({ item }) => {
             <Counter max={item.stock} counter={quantity} setCounter={setQuantity} />
             {(flag!=0)
             ?
-            <Link
-                href={"/carrito"}>
-                    <Boton className="w-full bg-green-200" onClick={handleAdd}>Actualizar al carrito</Boton>
-                </Link>
+            <Boton className="w-full bg-green-200" onClick={handleAdd}>Actualizar al carrito</Boton>
             :
             <Boton className="w-full" onClick={handleAdd}>Agregar al carrito</Boton>
             }

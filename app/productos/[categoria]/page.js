@@ -2,7 +2,7 @@ import CategoriesMenu from "@/components/products/CategoriesMenu"
 import ProductsList from "@/components/products/ProductsList"
 import { Skeleton } from "@/components/ui/skeleton"
 import { Suspense } from "react"
-
+import Image from "next/image"
 
 export async function generateMetadata({params, searchParams}, parent) {
 
@@ -21,7 +21,10 @@ const Productos = ({params}) => {
             <div className="flex gap-10">
                 <CategoriesMenu />
 
-                <Suspense fallback={<Skeleton className="w-2/3 h-full rounded-full " />}>
+                <Suspense fallback={<Image  src="./spinner.gif"
+                        alt="spinner"
+                        width={860}
+                        height={860}/>}>
                     <ProductsList categoria={categoria}/>
                 </Suspense>
             </div>
