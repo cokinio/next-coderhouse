@@ -54,7 +54,7 @@ const Header = () => {
                         >
                             <Image
                             alt="cart"
-                            src="./cart.svg"
+                            src="/cart.svg"
                             width={50}
                             height={50}
                             style={{objectFit: "contain"}}

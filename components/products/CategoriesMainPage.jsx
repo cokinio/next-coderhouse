@@ -27,7 +27,7 @@ const links = [
 	{ label: "Cereales", href: "/productos/Cereales", img: "/cereales.webp" },
 	{
 		label: "Repostería",
-		href: "/productos/Reposteria",
+		href: "/productos/Repostería",
 		img: "/reposteria.webp",
 	},
 	{ label: "Especias", href: "/productos/Especias", img: "/especias.webp" },

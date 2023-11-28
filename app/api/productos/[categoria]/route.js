@@ -14,3 +14,4 @@ export async function GET(_, { params }) {
 
     return NextResponse.json(products)
 }
+

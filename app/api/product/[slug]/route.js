@@ -8,3 +8,5 @@ export async function GET(_, { params }) {
     let product = await productsModel.find({title:slug})
     return NextResponse.json(product)
 }
+
+

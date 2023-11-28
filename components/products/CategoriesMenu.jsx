@@ -11,7 +11,7 @@ const links = [
     { label: "Harinas - Féculas - Avenas", href: "/productos/Harinas-Feculas-Avenas", },
     { label: "Legumbres - Arroz", href: "/productos/Legumbres-Arroz", },
     { label: "Chocolatoso", href: "/productos/Chocolatoso", },
-    { label: "Repostería", href: "/productos/Reposteria", },
+    { label: "Repostería", href: "/productos/Repostería", },
     { label: "Envasados", href: "/productos/Envasados", },
     { label: "Cereales", href: "/productos/Cereales", },
     { label: "Especias", href: "/productos/Especias", },

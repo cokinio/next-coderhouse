@@ -33,10 +33,11 @@ const booleanTypeSchemaNonUniqueRequired = {
 };
 
 const productSchema = new mongoose.Schema({
-    Title1: stringTypeSchemaNonUniqueRequired,
-    Image1:stringTypeSchemaNonUniqueRequired,
-    Price1: stringTypeSchemaNonUniqueRequired,
-    Field3:stringTypeSchemaNonUniqueRequired,
+    title: stringTypeSchemaNonUniqueRequired,
+    image:stringTypeSchemaNonUniqueRequired,
+    price: stringTypeSchemaNonUniqueRequired,
+    category:stringTypeSchemaNonUniqueRequired,
+    stock:stringTypeSchemaNonUniqueRequired,
 });
 
 export default mongoose.models[productsCollection] || mongoose.model(productsCollection,productSchema);
