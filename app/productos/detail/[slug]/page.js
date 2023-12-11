@@ -14,7 +14,7 @@ const DetailPage = ({params}) => {
 
     return (
         <main className="container m-auto mt-10">
-            <ProductDetail slug={slug}/>
+            <ProductDetail item={slug}/>
         </main>
     )
 }

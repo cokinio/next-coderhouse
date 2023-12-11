@@ -38,6 +38,7 @@ const productSchema = new mongoose.Schema({
     price: stringTypeSchemaNonUniqueRequired,
     category:stringTypeSchemaNonUniqueRequired,
     stock:stringTypeSchemaNonUniqueRequired,
+    description:stringTypeSchemaNonUniqueNonRequired
 });
 
 export default mongoose.models[productsCollection] || mongoose.model(productsCollection,productSchema);

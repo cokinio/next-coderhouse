@@ -9,4 +9,30 @@ export async function GET(_, { params }) {
     return NextResponse.json(product)
 }
 
+export async function PUT(req,{ params }) {
+	try {
+		mongoInstance();
+		const { slug } = params;
+		let product = await req.json();
+        console.log(product)
+		let searchedObject = await productsModel.find({title:slug});
+        console.log(searchedObject)
+		if (searchedObject != undefined) {
+			await productsModel.updateOne({ title:slug }, product);
+            return NextResponse.json({
+				status: "Success",
+			    message: "Producto agregado modicado exito"
+        });
+		} else {
+			return NextResponse.json(
+				{ error: "Error:producto no encontrado" },
+				{ status: 500 }
+			);
+		}
+	} catch (error) {
+		console.error(error);
+		return NextResponse.json({ error: "Error" }, { status: 500 });
+	}
+}
+
 

@@ -35,7 +35,7 @@ const ProductDetail = async ({ slug }) => {
             </section>
             <section className="mt-12">
                 <h3 className="text-xl font-semibold border-b border-gray-200 pb-4 my-4">Descripcion</h3>
-                <p className="text-gray-600">{item.category}</p>
+                <p className="text-gray-600">{item.description ? item.description : item.category}</p>
             </section>
         </div>
     )
