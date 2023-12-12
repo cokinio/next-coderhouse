@@ -8,10 +8,12 @@ import GoBack from "../ui/GoBack"
 const ProductDetail = async ({ slug }) => {
 
     let fixedSlug=decodeURI(slug)
+    console.log(fixedSlug)
     const itemFound = await fetch(`http://localhost:3000/api/product/${fixedSlug}`, {
         cache: 'no-store'
     }).then(res => res.json())
-
+    
+    console.log(itemFound)
     let item=itemFound[0];
     return (
         <div className="max-w-4xl m-auto">

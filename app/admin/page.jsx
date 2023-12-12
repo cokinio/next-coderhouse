@@ -1,6 +1,9 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
+import BotonEliminar from "@/components/admin/BotonEliminar";
+
+
 
 const page = async () => {
 
@@ -12,7 +15,7 @@ const page = async () => {
     <div className="rounded-t-xl overflow-hidden p-10">
             <h1 className="font-7xl font-bold uppercase text-center my-2"> Panel de administración</h1>
             <div className="flex justify-end my-3">
-                <button className="m-5 bg-green-400 font-xl p-3 rounded-xl ">+ Nuevo producto</button>
+			<Link href={`/admin/create`} > <button className="m-5 bg-green-400 font-xl p-3 rounded-xl ">+ Nuevo producto</button></Link>
             </div>
 			<table className='table-auto w-full text-center border border-collapse'>
 				<thead className="bg-gray-700">
@@ -52,8 +55,8 @@ const page = async () => {
                                         </div>
 									</td>
 									<td className="px-4 py-2 font-medium border flex justify-items-center justify-around">
-										<button className="text-bold bg-red-700 text-white p-2 rounded">Borrar</button>
-                                        <button className="text-bold bg-slate-700 text-white p-2 rounded">Editar</button>
+										<BotonEliminar item={item}>Borrar</BotonEliminar>
+                                        <Link href={`/admin/edit/${item.title}`}>  <button className="text-bold bg-slate-700 text-white p-2 rounded">Editar</button></Link>
 									</td>
 								</tr>
 							</React.Fragment>

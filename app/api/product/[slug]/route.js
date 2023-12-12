@@ -21,7 +21,7 @@ export async function PUT(req,{ params }) {
 			await productsModel.updateOne({ title:slug }, product);
             return NextResponse.json({
 				status: "Success",
-			    message: "Producto agregado modicado exito"
+			    message: "Producto modicado exito"
         });
 		} else {
 			return NextResponse.json(
@@ -36,3 +36,24 @@ export async function PUT(req,{ params }) {
 }
 
 
+export async function DELETE(req,{ params }) {
+	try {
+		mongoInstance();
+		const { slug } = params;
+		let deletedObject = await productsModel.deleteOne({title:slug});
+		if (deletedObject != undefined) {
+            return NextResponse.json({
+				status: "Success",
+			    message: "Producto eliminado exito"
+        });
+		} else {
+			return NextResponse.json(
+				{ error: "Error:producto no encontrado" },
+				{ status: 500 }
+			);
+		}
+	} catch (error) {
+		console.error(error);
+		return NextResponse.json({ error: "Error" }, { status: 500 });
+	}
+}

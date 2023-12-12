@@ -73,6 +73,17 @@ export const CartProvider = ({children}) => {
       return found;
     }
 
+    function priceToNumber(price){
+      let stringPrecio=price.replace('.','')
+      stringPrecio=stringPrecio.replace(/,/, '.')
+      let precio=stringPrecio.slice(1,stringPrecio.length)
+      return Number(precio);
+    }
+
+    function priceToString(price){
+      let precio="$"+`${price.toString()},00`
+      return precio;
+    }
     return (
         <CartContext.Provider value={{
             addToCart, 
@@ -82,6 +93,8 @@ export const CartProvider = ({children}) => {
             isInCart, 
             totalCart,
             subtotal,
+            priceToString,
+            priceToNumber,
             cart
         }}>
             {children}

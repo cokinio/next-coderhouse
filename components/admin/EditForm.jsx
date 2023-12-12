@@ -1,38 +1,21 @@
 "use client"
-
+import Image from "next/image"
 import { useState,useEffect  } from "react"
 import Boton from "../ui/Boton"
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage"
 import { storage } from "@/firebase/config"
-
-const updateProduct = async (values, file) => {
-    let id=Date.now().toString()+values.title.trim();
-    const storageRef = ref(storage,id )
-    const fileSnapshot = await uploadBytes(storageRef,file)
-    const fileURL = await getDownloadURL(fileSnapshot.ref)
-    console.log(fileURL)
-    let _datos={
-        title:values.title,
-        image: fileURL,
-        price:"$"+`${values.price.toString()},00`,
-        category:values.category,
-        stock:values.stock,
-        description:values.description
-    }
-    let productCreated = await fetch(`http://localhost:3000/api/product/`, {
-        method: "PUT",
-        body: JSON.stringify(_datos),
-        headers: {"Content-type": "application/json; charset=UTF-8"}
-    }).then(res => res.json())
-    console.log(productCreated)
-}
+import { useCartContext } from "../../context/CartContext"
 
 
-const EditForm = ({item}) => {
-    console.log(item)
-    let product= getProductInfo(item)
+
+const EditForm = (product) => {
+    const  {priceToNumber,priceToString} = useCartContext()
     console.log(product)
-    const { title, image, price, category, stock, description } = product
+    console.log(product.item.price)
+    let price= priceToNumber(product.item.price) 
+    console.log(price)
+    const { title, image, category, stock, description } = product.item;
+    console.log(title)
     const [values, setValues] = useState({ title, image, price, category, stock, description })
     const [file, setFile] = useState(null)
 
@@ -46,7 +29,36 @@ const EditForm = ({item}) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        await updateProduct(item.slug, values, file)
+        await updateProduct(values, file)
+        window.location.href = "/admin";
+
+    }
+
+    const updateProduct = async (values, file) => {
+        let _datos={};
+        if (file!=null){
+            let id=Date.now().toString()+values.title.trim();
+            const storageRef = ref(storage,id )
+            const fileSnapshot = await uploadBytes(storageRef,file)
+            const fileURL = await getDownloadURL(fileSnapshot.ref)
+            console.log(fileURL)
+            _datos.image=fileURL;
+        }
+        
+        _datos.title=values.title
+        _datos.price=priceToString(values.price)
+        _datos.category=values.category
+        _datos.stock=values.stock
+        _datos.description=values.description
+        
+        let encoded = encodeURI(`http://localhost:3000/api/product/${product.item.title}`);
+        console.log(encoded)
+        let productupdated = await fetch(encoded, {
+            method: "PUT",
+            body: JSON.stringify(_datos),
+            headers: {"Content-type": "application/json; charset=UTF-8"}
+        }).then(res => res.json())
+        console.log(productupdated)
     }
 
     return (
@@ -62,8 +74,15 @@ const EditForm = ({item}) => {
                     name="title"
                     onChange={handleChange}
                 />
+                <label>Imagen actual: </label>
+                <Image className="mb-10"
+                        src={values.image}
+                        alt={values.title}
+                        width={240}
+                        height={240}
+                    />
 
-                <label>Imagen: </label>
+                <label>Si desea cambiar la imagen seleccione un archivo: </label>
                 <input
                     type="file"
                     onChange={(e) => setFile(e.target.files[0])}

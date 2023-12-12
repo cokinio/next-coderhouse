@@ -1,23 +1,17 @@
 import React from 'react'
 import EditForm from '@/components/admin/EditForm'
 
-
-
-const getProductInfo = async (product) =>{
-  let fixedSlug=decodeURI(product)
-  const item = await fetch(`http://localhost:3000/api/product/${fixedSlug}`, {
-      cache: 'no-store'
-  }).then(res => res.json())}
-
-
-const page = ({params}) => {
+const page = async ({params}) => {
 const {product} = params
-useEffect(()=>{let datos= getProductInfo(product)
-},[]);
+let fixedSlug=decodeURI(product)
+const item = await fetch(`http://localhost:3000/api/product/${fixedSlug}`, {
+      cache: 'no-store'
+  }).then(res => res.json());
+
 
 return (
     <div>
-        <EditForm item={datos} />
+        <EditForm item={item[0]} />
     </div>
   )
 }

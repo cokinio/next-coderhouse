@@ -48,6 +48,7 @@ const CreateForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         await createProduct(values, file)
+        window.location.href = "/admin";
     }
 
     return (
