@@ -1,5 +1,5 @@
 "use client"
-import { auth, db, provider } from "@/firebase/config"
+import { auth,db, provider } from "@/firebase/config"
 import { signInWithPopup, signOut, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth"
 import { doc, getDoc } from "firebase/firestore"
 import { useRouter } from "next/navigation"
@@ -34,33 +34,33 @@ export const AuthProvider = ({children}) => {
         await signInWithPopup(auth, provider)
     }
 
-    useEffect(() => {
-        onAuthStateChanged(auth, async (user) => {
+    // useEffect(() => {
+    //     onAuthStateChanged(auth, async (user) => {
 
-            if (user) {
-                const docRef = doc(db, "roles", user.uid)
-                const userDoc = await getDoc(docRef)
+    //         if (user) {
+    //             // const docRef = doc(db, "roles", user.uid)
+    //             // const userDoc = await getDoc(docRef)
 
-                if (userDoc.data()?.rol === "admin") {
-                    setUser({
-                        logged: true,
-                        email: user.email,
-                        uid: user.uid
-                    })
-                } else {
-                    router.push("/unauthorized")
-                    logout()
-                }
+    //             // if (userDoc.data()?.rol === "admin") {
+    //                 setUser({
+    //                     logged: true,
+    //                     email: user.email,
+    //                     uid: user.uid
+    //                 })
+    //             // } else {
+    //             //     router.push("/unauthorized")
+    //             //     logout()
+    //             // }
 
-            } else {
-                setUser({
-                    logged: false,
-                    emaiL: null,
-                    uid: null
-                })
-            }
-        })
-    }, [])
+    //         } else {
+    //             setUser({
+    //                 logged: false,
+    //                 emaiL: null,
+    //                 uid: null
+    //             })
+    //         }
+    //     })
+    // }, [])
 
     return (
         <AuthContext.Provider value={{

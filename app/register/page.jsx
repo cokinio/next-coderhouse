@@ -1,27 +1,38 @@
 import React from "react";
 import Link from "next/link";
-import { UserAuthForm } from "@/components/auth/User-auth-form";
+import { cn } from "@/lib/utils";
+import { buttonVariants } from "@/components/ui/button";
+import { UserRegisterForm } from "@/components/auth/User-register-form";
 
 export const metadata = {
-	title: "Authentication",
-	description: "Authentication forms built using the components.",
+	title: "Registro",
+	description: "Registro de usuarios",
 };
 
-export default function AuthenticationPage() {
+export default function RegisterPage() {
 	return (
 		<>
-			<div className="container relative hidden h-[800px] flex-col items-center justify-center md:grid lg:max-w-none lg:grid lg:px-0">
+			<div className="container relative hidden h-[400px] flex-col items-center justify-center md:grid lg:max-w-none lg:grid lg:px-0">
+				<Link
+					href="/examples/authentication"
+					className={cn(
+						buttonVariants({ variant: "ghost" }),
+						"absolute right-4 top-4 md:right-8 md:top-8"
+					)}
+				>
+					Login
+				</Link>
 				<div className="lg:p-8 mx-auto">
-					<div className="mx-auto flex w-full flex-col justify-center space-y-2 sm:w-[350px]">
+					<div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
 						<div className="flex flex-col space-y-2 text-center">
 							<h1 className="text-2xl font-semibold tracking-tight">
-								Ingresa a tu cuenta
+								Crea tu cuenta
 							</h1>
 							<p className="text-sm text-muted-foreground">
-								Ingresa tu email para loguearte
+								Ingresa tu email parar crea tu cuenta
 							</p>
 						</div>
-						<UserAuthForm />
+						<UserRegisterForm />
 						<p className="px-8 text-center text-sm text-muted-foreground">
 							Clickeando aceptas nuestros{" "}
 							<Link
