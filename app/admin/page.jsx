@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import BotonEliminar from "@/components/admin/BotonEliminar";
-
+import BotonLogouot from "@/components/admin/BotonLogout";
 
 
 const page = async () => {
@@ -15,6 +15,7 @@ const page = async () => {
     <div className="rounded-t-xl overflow-hidden p-10">
             <h1 className="font-7xl font-bold uppercase text-center my-2"> Panel de administración</h1>
             <div className="flex justify-end my-3">
+			<BotonLogouot>Logout</BotonLogouot>
 			<Link href={`/admin/create`} > <button className="m-5 bg-green-400 font-xl p-3 rounded-xl ">+ Nuevo producto</button></Link>
             </div>
 			<table className='table-auto w-full text-center border border-collapse'>
