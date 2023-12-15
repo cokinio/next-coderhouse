@@ -19,7 +19,7 @@ const createProduct = async (values, file) => {
         stock:values.stock,
         description:values.description
     }
-    let productCreated = await fetch(`http://localhost:3000/api/product/`, {
+    let productCreated = await fetch(`${process.env.HOST}/api/product/`, {
         method: "POST",
         body: JSON.stringify(_datos),
         headers: {"Content-type": "application/json; charset=UTF-8"}

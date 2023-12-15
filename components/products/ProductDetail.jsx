@@ -9,7 +9,7 @@ const ProductDetail = async ({ slug }) => {
 
     let fixedSlug=decodeURI(slug)
     console.log(fixedSlug)
-    const itemFound = await fetch(`http://localhost:3000/api/product/${fixedSlug}`, {
+    const itemFound = await fetch(`${process.env.HOST}/api/product/${fixedSlug}`, {
         cache: 'no-store'
     }).then(res => res.json())
     

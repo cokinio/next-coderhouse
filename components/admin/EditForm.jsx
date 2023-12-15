@@ -51,7 +51,7 @@ const EditForm = (product) => {
         _datos.stock=values.stock
         _datos.description=values.description
         
-        let encoded = encodeURI(`http://localhost:3000/api/product/${product.item.title}`);
+        let encoded = encodeURI(`${process.env.HOST}/api/product/${product.item.title}`);
         console.log(encoded)
         let productupdated = await fetch(encoded, {
             method: "PUT",
