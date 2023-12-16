@@ -2,7 +2,8 @@
 import React from 'react'
 
 const eliminarProducto = async (product) =>{
-	let deleted=await fetch(`/api/product/${product}`, {
+	
+	let deleted=await fetch(`${process.env.HOST}/api/product/${product}`, {
 		method: "DELETE",
 		headers: {"Content-type": "application/json; charset=UTF-8"}
 	}).then(res => res.json())
