@@ -10,7 +10,7 @@ const page = async () => {
 	let items=[{}];
 	
 	try{
-		let res = await fetch(`http://localhost:3000/api/productos/todos`, {
+		let res = await fetch(`${process.env.HOST}/api/productos/todos`, {
 			cache: 'no-store'
 		})
 		items= await res.json()
