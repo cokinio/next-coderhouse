@@ -4,9 +4,16 @@ import EditForm from '@/components/admin/EditForm'
 const page = async ({params}) => {
 const {product} = params
 let fixedSlug=decodeURI(product)
-const item = await fetch(`http://localhost:3000/api/product/${fixedSlug}`, {
-      cache: 'no-store'
-  }).then(res => res.json());
+let item={}
+
+try{
+  let res = await fetch(`http://localhost:3000/api/product/${fixedSlug}`, {
+        cache: 'no-store'
+    })
+    item= await res.json();
+}catch(error){
+  console.log(error)
+}
 
 
 return (

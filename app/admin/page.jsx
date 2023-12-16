@@ -7,9 +7,16 @@ import BotonLogouot from "@/components/admin/BotonLogout";
 
 const page = async () => {
 
-	const items = await fetch(`http://localhost:3000/api/productos/todos`, {
-        cache: 'no-store'
-    }).then(res => res.json())
+	let items=[{}];
+	
+	try{
+		let res = await fetch(`http://localhost:3000/api/productos/todos`, {
+			cache: 'no-store'
+		})
+		items= await res.json()
+	}catch(error){
+		console.log(error)
+	}
 
   return (
     <div className="rounded-t-xl overflow-hidden p-10">

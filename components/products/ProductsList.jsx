@@ -1,12 +1,19 @@
 import ProductCard from "./ProductCard"
 
 const ProductsList = async ({ categoria }) => {
+    let items=[{}];
 
-    const items = await fetch(`${process.env.HOST}/api/productos/${categoria}`, {
-        // cache: 'force-cache',
-        //cache: 'no-store',
-        next: { revalidate: 3600 } 
-    }).then(r => r.json())
+    try{
+        let res = await fetch(`${process.env.HOST}/api/productos/${categoria}`, {
+            // cache: 'force-cache',
+            //cache: 'no-store',
+            next: { revalidate: 3600 } 
+        })
+        items= await res.json()
+    }catch(error){
+        console.log(error)
+    }
+
 
     return (
         <section className="container m-auto flex justify-center items-center gap-12 flex-wrap">

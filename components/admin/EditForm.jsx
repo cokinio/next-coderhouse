@@ -36,6 +36,7 @@ const EditForm = (product) => {
 
     const updateProduct = async (values, file) => {
         let _datos={};
+        let productupdated;
         if (file!=null){
             let id=Date.now().toString()+values.title.trim();
             const storageRef = ref(storage,id )
@@ -53,12 +54,18 @@ const EditForm = (product) => {
         
         let encoded = encodeURI(`${process.env.HOST}/api/product/${product.item.title}`);
         console.log(encoded)
-        let productupdated = await fetch(encoded, {
-            method: "PUT",
-            body: JSON.stringify(_datos),
-            headers: {"Content-type": "application/json; charset=UTF-8"}
-        }).then(res => res.json())
-        console.log(productupdated)
+
+        try{
+            let res = await fetch(encoded, {
+                method: "PUT",
+                body: JSON.stringify(_datos),
+                headers: {"Content-type": "application/json; charset=UTF-8"}
+            })
+            productupdated = await res.json()
+            console.log(productupdated)
+        }catch(error){
+            console.log(error)
+        }
     }
 
     return (

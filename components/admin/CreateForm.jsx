@@ -19,12 +19,20 @@ const createProduct = async (values, file) => {
         stock:values.stock,
         description:values.description
     }
-    let productCreated = await fetch(`${process.env.HOST}/api/product/`, {
-        method: "POST",
-        body: JSON.stringify(_datos),
-        headers: {"Content-type": "application/json; charset=UTF-8"}
-    }).then(res => res.json())
-    console.log(productCreated)
+    let productCreated;
+
+    try{
+        let res = await fetch(`${process.env.HOST}/api/product/`, {
+            method: "POST",
+            body: JSON.stringify(_datos),
+            headers: {"Content-type": "application/json; charset=UTF-8"}
+        })
+        
+        productCreated= await res.json()
+        console.log(productCreated)
+    }catch(error){
+        console.log(error)
+    }
 }
 
 const CreateForm = () => {
