@@ -22,7 +22,7 @@ const createProduct = async (values, file) => {
     let productCreated;
 
     try{
-        let res = await fetch(`${process.env.HOST}/api/product/`, {
+        let res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/product/`, {
             method: "POST",
             body: JSON.stringify(_datos),
             headers: {"Content-type": "application/json; charset=UTF-8"}

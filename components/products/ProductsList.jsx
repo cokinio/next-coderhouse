@@ -4,7 +4,7 @@ const ProductsList = async ({ categoria }) => {
     let items=[{}];
 
     try{
-        let res = await fetch(`${process.env.HOST}/api/productos/${categoria}`, {
+        let res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/productos/${categoria}`, {
             // cache: 'force-cache',
             //cache: 'no-store',
             next: { revalidate: 3600 } 
