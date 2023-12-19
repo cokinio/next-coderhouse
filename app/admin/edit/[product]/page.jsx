@@ -7,7 +7,7 @@ let fixedSlug=decodeURI(product)
 let item={}
 
 try{
-  let res = await fetch(`${process.env.HOST}/api/product/${fixedSlug}`, {
+  let res = await fetch(`http://localhost:3000/api/product/${fixedSlug}`, {
         cache: 'no-store'
     })
     item= await res.json();

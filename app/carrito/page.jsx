@@ -3,6 +3,7 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useCartContext } from "@/context/CartContext";
+import { Button } from "@/components/ui/button";
 
 function CartTable() {
 	const { cart,removeItem, itemsInCart, totalCart } = useCartContext();
@@ -63,6 +64,9 @@ function CartTable() {
 					</tr>
 				</tbody>
 			</table>
+			<div className="flex justify-center">
+				<Button className="mt-9" ><Link href={`/buy`}>Comprar</Link></Button>
+			</div>
 		</div>
 	);
 }

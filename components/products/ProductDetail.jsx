@@ -1,3 +1,4 @@
+import { mockData } from "@/data/diet";
 import Image from "next/image";
 import QuantSel from "./QuantSel";
 import GoBack from "../ui/GoBack";
@@ -7,7 +8,7 @@ const ProductDetail = async ({ slug }) => {
 	let fixedSlug = decodeURI(slug);
 	console.log(fixedSlug);
 	try {
-		let res = await fetch(`${process.env.HOST}/api/product/${slug}`, {
+		let res = await fetch(`${process.env.HOST}/api/product/${fixedSlug}`, {
 			cache: "no-store",
 		});
 		itemFound = await res.json();

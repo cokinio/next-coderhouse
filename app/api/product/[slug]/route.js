@@ -4,8 +4,7 @@ import {mongoInstance} from "@/lib/mongoDB"
 
 export async function GET(_, { params }) {
     mongoInstance();
-    const { slug1 } = params;
-	let slug = decodeURI(slug1).trim();
+    const { slug } = params;
     let product = await productsModel.find({title:slug})
     return NextResponse.json(product)
 }
