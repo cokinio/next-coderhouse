@@ -10,14 +10,13 @@ const page = async () => {
 	let items=[{}];
 	
 	try{
-		let res = await fetch(`http://localhost:3000/api/productos/todos`, {
+		let res = await fetch(`${process.env.HOST}/api/productos/todos`, {
 			cache: 'no-store'
 		})
 		items= await res.json()
 	}catch(error){
 		console.log(error)
 	}
-
   return (
     <div className="rounded-t-xl overflow-hidden p-10">
             <h1 className="font-7xl font-bold uppercase text-center my-2"> Panel de administración</h1>
