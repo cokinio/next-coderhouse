@@ -20,7 +20,6 @@ const QuantSel = ({ item }) => {
 
     const reestablecerCantidad= ()=>{
     let encontrado=isInCart(item._id);
-    console.log(encontrado)
     if (encontrado!=-1){
         setQuantity(cart[encontrado].quantity)
         setFlag(1);

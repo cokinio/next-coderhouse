@@ -1,13 +1,10 @@
 "use client"
 import { useState } from "react"
 import Boton from "../ui/Boton"
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage"
-import { storage } from "@/firebase/config"
 import { useCartContext } from "../../context/CartContext"
 
 const BuyForm = (product) => {
     const  {cart} = useCartContext()
-    console.log(cart)
     let user={
         nombre:"",
         apellido:"",
@@ -25,22 +22,30 @@ const BuyForm = (product) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        await postCart(values)
-        window.location.href = "/admin";
+        let id= await postCart(values,cart)
+        window.location.href = `${process.env.NEXT_PUBLIC_HOST}/yourorder/${id}`;
 
     }
 
-    const postCart = async (values, file) => {
-
-
+    const postCart = async (values, cart) => {
         try{
-            let res = await fetch(encoded, {
-                method: "PUT",
+            let carrito= cart.map((product)=>({pid:product._id,quantity:product.quantity}))
+            console.log(carrito)
+            let _datos={
+                nombre:values.nombre,
+                apellido:values.apellido,
+                email:values.email,
+                products:carrito
+            } 
+            console.log(_datos)          
+            let res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/cart/`, {
+                method: "POST",
                 body: JSON.stringify(_datos),
                 headers: {"Content-type": "application/json; charset=UTF-8"}
             })
-            productupdated = await res.json()
-            console.log(productupdated)
+            let cartCreated = await res.json()
+            console.log(cartCreated)
+            return cartCreated.id;
         }catch(error){
             console.log(error)
         }

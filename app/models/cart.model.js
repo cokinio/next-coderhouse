@@ -2,14 +2,12 @@ import mongoose from "mongoose";
 
 const cartsCollection = "carts";
 
-const stringTypeSchemaNonUniqueRequired = {
-	type: String,
-	required: true,
+const stringTypeSchemaNonUniqueNonRequired = {
+	type: String
 };
 
-const numberTypeSchemaNonUniqueRequired = {
-	type: Number,
-	required: true,
+const numberTypeSchemaNonUniqueNonRequired = {
+	type: Number
 };
 
 const typePid ={
@@ -17,18 +15,22 @@ const typePid ={
 	   type:mongoose.Schema.Types.ObjectId,
 		ref:"products",
 	},
-	quantity:numberTypeSchemaNonUniqueRequired
+	quantity:numberTypeSchemaNonUniqueNonRequired
 }
 
 const cartsSchema = new mongoose.Schema({
-	apellido: stringTypeSchemaNonUniqueRequired,
-	nombre: stringTypeSchemaNonUniqueRequired,
-	email: stringTypeSchemaNonUniqueRequired,
+	apellido:String,
+	nombre: String,
+	email: String,
 	products: [
         {
         type:typePid,
         }
     ]
+});
+
+cartsSchema.pre('findOne', function() {
+    this.populate('products.pid');
 });
 
 export default mongoose.models[cartsCollection] ||
