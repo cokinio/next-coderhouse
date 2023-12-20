@@ -4,6 +4,7 @@ import { signInWithPopup, signOut, onAuthStateChanged, createUserWithEmailAndPas
 import { doc, getDoc } from "firebase/firestore"
 import { useRouter } from "next/navigation"
 import { createContext, useContext, useEffect, useState } from "react"
+import Swal from "sweetalert2"
 
 const AuthContext = createContext()
 
@@ -19,11 +20,25 @@ export const AuthProvider = ({children}) => {
     const router = useRouter()
 
     const registerUser = async (values) => {
-        await createUserWithEmailAndPassword(auth, values.email, values.password)
+        try{
+            let response = await createUserWithEmailAndPassword(auth, values.email, values.password)
+        Swal.fire("Registro realizado con exito");
+        setTimeout(() => {
+            window.location.href = "/admin"
+          }, 3000)
+        }catch(error){
+            Swal.fire("Error en registro");
+        }
+        
     }
 
     const loginUser = async (values) => {
-        await signInWithEmailAndPassword(auth, values.email, values.password)
+        try{
+            let response = await signInWithEmailAndPassword(auth, values.email, values.password)
+        }catch(error){
+            Swal.fire("Error en el login");
+        }
+        
     }
 
     const logout = async () => {
